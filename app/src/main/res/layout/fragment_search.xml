@@ -28,7 +28,7 @@
         android:fadingEdge="horizontal"
         android:fadingEdgeLength="20dp"
         android:requiresFadingEdge="vertical"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +36,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_detail" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomBar"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        app:menu="@menu/bottom_bar_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
