@@ -64,4 +64,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
