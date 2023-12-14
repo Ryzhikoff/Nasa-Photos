@@ -1,16 +1,11 @@
-package evgeniy.ryzhikov.nasaphotos
+package evgeniy.ryzhikov.nasaphotos.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.isVisible
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import evgeniy.ryzhikov.nasaphotos.R
 import evgeniy.ryzhikov.nasaphotos.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,11 +20,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomBar.setupWithNavController(navController)
 
-//        navController.addOnDestinationChangedListener{ _, destination, _ ->
-//            println("destination $destination")
-//            println("destination.id ${destination.id} R.id.splashFragment ${R.id.splashFragment}")
-////             = destination.id != R.id.splashFragment
-//        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
     }
 
 }
