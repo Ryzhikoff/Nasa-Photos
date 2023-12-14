@@ -6,4 +6,59 @@
     </style>
 
     <style name="Theme.NasaPhotos" parent="Base.Theme.NasaPhotos" />
+
+    <style name="BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/dark_light</item>
+        <item name="itemIconTint">@color/bottom_bar_icon_state</item>
+        <item name="itemTextColor">@color/bottom_bar_icon_state</item>
+        <item name="itemActiveIndicatorStyle">@style/ActiveIndicatorStyle</item>
+    </style>
+
+    <style name="ActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
+
+    <style name="BaseTextStyle">
+        <item name="fontFamily">Overpass</item>
+    </style>
+
+    <style name="TitleLarge" parent="BaseTextStyle">
+        <item name="android:textSize">28sp</item>
+        <item name="lineHeight">40sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:translationY">-2.28sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitleSmall" parent="BaseTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:lineSpacingExtra">1sp</item>
+        <item name="android:translationY">-0.61sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Body" parent="BaseTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:translationY">-1.87sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="Subhead" parent="BaseTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:translationY">-1.14sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="Headline" parent="BaseTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">22sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:translationY">-0.87sp</item>
+        <item name="android:textColor">@color/gray_light</item>
+    </style>
 </resources>

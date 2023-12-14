@@ -3,5 +3,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
     <string name="menu_favorite">Favorite</string>
-    <string name="home_update_image">Обновить картинку</string>
+    <string name="home_update_image">Update image</string>
+    <string name="label_random_image">Random image</string>
 </resources>
