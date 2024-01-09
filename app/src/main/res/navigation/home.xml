@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="evgeniy.ryzhikov.nasaphotos.ui.HomeFragment"
+        android:name="evgeniy.ryzhikov.nasaphotos.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"/>
 </navigation>

@@ -11,12 +11,13 @@
         style="@style/TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/label_random_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Random image"/>
+
     <ImageView
         android:id="@+id/randomImage"
         android:layout_width="0dp"
@@ -32,6 +33,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         android:background="@drawable/home_random_background"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:indicatorColor="@color/gray"
+        app:layout_constraintTop_toTopOf="@id/randomImage"
+        app:layout_constraintStart_toStartOf="@id/randomImage"
+        app:layout_constraintEnd_toEndOf="@id/randomImage"
+        app:layout_constraintBottom_toBottomOf="@id/randomImage"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -51,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Io: The Prometheus Plume"/>
+        tools:text="Io: The Prometheus Plume"/>
 
     <TextView
         android:id="@+id/date"
@@ -61,16 +72,16 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="2011-05-22"/>
+        tools:text="2011-05-22"/>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:fadingEdge="horizontal"
         android:fadingEdgeLength="20dp"
         android:requiresFadingEdge="vertical"
@@ -84,7 +95,7 @@
             style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What's happening on Jupiter's moon Io? Two sulfurous eruptions are visible on Jupiter's volcanic moon Io in this color composite image from the robotic Galileo spacecraft that orbited Jupiter from 1995 to 2003. At the image top, over Io's limb, a bluish plume rises about 140 kilometers above the surface of a volcanic caldera known as Pillan Patera. In the image middle, near the night/day shadow line, the ring shaped Prometheus plume is seen rising about 75 kilometers above Io while casting a shadow below the volcanic vent. Named for the Greek god who gave mortals fire, the Prometheus plume is visible in every image ever made of the region dating back to the Voyager flybys of 1979 - presenting the possibility that this plume has been continuously active for at least 18 years. The above digitally sharpened image of Io was originally recorded in 1997 from a distance of about 600,000 kilometers. Recent analyses of Galileo data has uncovered evidence of a magma ocean beneath Io's surface."/>
+            tools:text="What's happening on Jupiter's moon Io? Two sulfurous eruptions are visible on Jupiter's volcanic moon Io in this color composite image from the robotic Galileo spacecraft that orbited Jupiter from 1995 to 2003. At the image top, over Io's limb, a bluish plume rises about 140 kilometers above the surface of a volcanic caldera known as Pillan Patera. In the image middle, near the night/day shadow line, the ring shaped Prometheus plume is seen rising about 75 kilometers above Io while casting a shadow below the volcanic vent. Named for the Greek god who gave mortals fire, the Prometheus plume is visible in every image ever made of the region dating back to the Voyager flybys of 1979 - presenting the possibility that this plume has been continuously active for at least 18 years. The above digitally sharpened image of Io was originally recorded in 1997 from a distance of about 600,000 kilometers. Recent analyses of Galileo data has uncovered evidence of a magma ocean beneath Io's surface."/>
 
     </ScrollView>
 
@@ -94,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:icon="@drawable/icon_arrow_update"
+        android:textColor="@color/button_text_color_state"
         android:text="@string/home_update_image"
         android:backgroundTint="@color/button_dark_color_state"
         android:layout_marginBottom="8dp"
