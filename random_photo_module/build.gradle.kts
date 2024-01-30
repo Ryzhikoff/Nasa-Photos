@@ -53,10 +53,5 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     ksp("com.google.dagger:dagger-compiler:$daggerVersion")
 
-    implementation(
-        project(
-            mapOf(
-                "path" to ":utils")
-        )
-    )
+    implementation(project(mapOf("path" to ":utils")))
 }

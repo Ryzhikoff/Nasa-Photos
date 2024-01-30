@@ -80,7 +80,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun showProgressBar(value: Boolean) {
-        println("showProgressBar $value")
         binding.progressBar.isVisible = value
     }
 
