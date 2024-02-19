@@ -2,21 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph.xml"
-    app:startDestination="@id/home">
+    app:startDestination="@id/random_photo_graph">
 
-    <include app:graph="@navigation/home"/>
-    <include app:graph="@navigation/search"/>
-    <include app:graph="@navigation/favorites"/>
-
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="evgeniy.ryzhikov.nasaphotos.ui.SplashFragment"
-        android:label="SplashFragment" >
-        <action
-            android:id="@+id/action_splashFragment_to_home"
-            app:destination="@id/home"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+    <include app:graph="@navigation/random_photo_graph"/>
+    <include app:graph="@navigation/search_graph"/>
+    <include app:graph="@navigation/favorites_graph"/>
 
 </navigation>

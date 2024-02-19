@@ -15,7 +15,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "Nasa Photos"
 include(":app")
-include(":random_photo_module")
 include(":utils")
-include(":search_module")
-include(":database_module")
+include(":database")
+include(":remote")
+include(":feature_random_photo")
+include(":feature_search")
+include(":feature_favorites")
+include(":features_details")
+include(":core")
