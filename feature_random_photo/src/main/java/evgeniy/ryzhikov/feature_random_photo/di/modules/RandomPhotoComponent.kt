@@ -1,6 +1,5 @@
 package evgeniy.ryzhikov.feature_random_photo.di.modules
 
-import androidx.fragment.app.Fragment
 import dagger.Component
 import evgeniy.ryzhikov.feature_random_photo.ui.RandomPhotoFragment
 import evgeniy.ryzhikov.feature_random_photo.ui.RandomPhotoViewModel

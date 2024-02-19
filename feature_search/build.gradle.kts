@@ -36,6 +36,7 @@ dependencies {
     implementation(AndroidX.appcompat)
     implementation(AndroidX.material)
     implementation(AndroidX.constraintLayout)
+    implementation("androidx.appcompat:appcompat:1.6.1")
     testImplementation(Junit.junit)
     androidTestImplementation(AndroidX.junit)
     androidTestImplementation(AndroidX.espresso)

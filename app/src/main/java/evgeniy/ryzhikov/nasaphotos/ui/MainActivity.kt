@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import evgeniy.ryzhikov.nasaphotos.R
 import evgeniy.ryzhikov.nasaphotos.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

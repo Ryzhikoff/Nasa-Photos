@@ -1,6 +1,5 @@
 package evgeniy.ryzhikov.remote.di.modules
 
-import android.widget.RemoteViews.RemoteResponse
 import dagger.Module
 import dagger.Provides
 import evgeniy.ryzhikov.remote.BuildConfig

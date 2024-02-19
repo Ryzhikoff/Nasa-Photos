@@ -1,6 +1,5 @@
 package evgeniy.ryzhikov.remote.data
 
-import evgeniy.ryzhikov.remote.data.Constants
 import evgeniy.ryzhikov.remote.data.dto.ApodResultDtoList
 import retrofit2.Response
 import retrofit2.http.GET
