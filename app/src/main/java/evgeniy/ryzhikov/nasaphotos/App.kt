@@ -1,27 +1,24 @@
 package evgeniy.ryzhikov.nasaphotos
 
 import android.app.Application
-import evgeniy.ryzhikov.apod_module.di.DaggerApodComponent
-import evgeniy.ryzhikov.database_module.di.DaggerDatabaseComponent
-import evgeniy.ryzhikov.database_module.di.DatabaseModule
-import evgeniy.ryzhikov.nasaphotos.di.AppComponent
-import evgeniy.ryzhikov.nasaphotos.di.DaggerAppComponent
-import evgeniy.ryzhikov.nasaphotos.di.modules.DomainModule
+import evgeniy.ryzhikov.feature_random_photo.di.modules.DaggerRandomPhotoComponent
+import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoComponent
+import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoComponentProvider
+import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoViewModelFactoryModule
+import evgeniy.ryzhikov.remote.di.modules.GetRandomPhotoUseCaseModule
+import evgeniy.ryzhikov.remote.di.modules.RemoteModule
 
-class App : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        val apodProvider = DaggerApodComponent.create()
-        val databaseProvider = DaggerDatabaseComponent.builder().databaseModule(DatabaseModule(this)).build()
-        appComponent = DaggerAppComponent.builder()
-            .apodProvider(apodProvider)
-            .databaseProvider(databaseProvider)
-            .domainModule(DomainModule(this))
+class App : Application(), RandomPhotoComponentProvider {
+
+    private val remoteModule by lazy {
+        RemoteModule()
+    }
+
+    override fun getRandomPhotoComponent(): RandomPhotoComponent =
+        DaggerRandomPhotoComponent.builder()
+            .getRandomPhotoUseCaseModule(GetRandomPhotoUseCaseModule())
+            .randomPhotoViewModelFactoryModule(RandomPhotoViewModelFactoryModule())
+            .remoteModule(remoteModule)
             .build()
-    }
 
-    companion object {
-        lateinit var appComponent: AppComponent
-            private set
-    }
 }

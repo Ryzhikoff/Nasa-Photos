@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomBar.setupWithNavController(navController)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, evgeniy.ryzhikov.core.R.color.black)
+        window.navigationBarColor = ContextCompat.getColor(this,  evgeniy.ryzhikov.core.R.color.black)
     }
 
 }
