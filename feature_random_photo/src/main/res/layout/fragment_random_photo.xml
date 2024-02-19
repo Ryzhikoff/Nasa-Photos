@@ -32,7 +32,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline"
-        android:background="@drawable/home_random_background"/>
+        android:background="@drawable/home_random_background"
+        tools:ignore="ContentDescription" />
 
     <ProgressBar
         android:id="@+id/progressBar"
