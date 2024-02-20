@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,6 +38,9 @@ dependencies {
     testImplementation(Junit.junit)
     androidTestImplementation(AndroidX.junit)
     androidTestImplementation(AndroidX.espresso)
+
+    implementation(Dagger.dagger_lib)
+    ksp(Dagger.dagger_compiler)
 
     implementation(Glide.lib)
 }

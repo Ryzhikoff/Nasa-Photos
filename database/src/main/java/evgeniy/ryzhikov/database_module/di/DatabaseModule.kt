@@ -5,17 +5,15 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import evgeniy.ryzhikov.database_module.data.DATABASE_NAME
-import evgeniy.ryzhikov.database_module.data.DatabaseRepository
-import evgeniy.ryzhikov.database_module.data.NasaPhotosDatabase
-import evgeniy.ryzhikov.database_module.data.dao.ImageInfoDao
+import evgeniy.ryzhikov.database_module.data.FavoriteRepository
+import evgeniy.ryzhikov.database_module.data.FavoriteRepositoryImpl
+import evgeniy.ryzhikov.database_module.data.room.NasaPhotosDatabase
+import evgeniy.ryzhikov.database_module.data.room.dao.ImageInfoDao
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule(private val context: Context) {
+class DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun provideContext(): Context = context
     @Singleton
     @Provides
     fun provideNasaPhotosDatabase(context: Context) =
@@ -32,6 +30,6 @@ class DatabaseModule(private val context: Context) {
 
     @Singleton
     @Provides
-    fun provideDatabaseRepository(imageInfoDao: ImageInfoDao) =
-        DatabaseRepository(imageInfoDao)
+    fun provideFavoriteRepository(imageInfoDao: ImageInfoDao):FavoriteRepository =
+        FavoriteRepositoryImpl(imageInfoDao)
 }

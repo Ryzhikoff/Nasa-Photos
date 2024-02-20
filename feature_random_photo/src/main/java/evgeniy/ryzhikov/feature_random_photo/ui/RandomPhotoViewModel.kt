@@ -2,6 +2,10 @@ package evgeniy.ryzhikov.feature_random_photo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
+import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
+import evgeniy.ryzhikov.feature_random_photo.models.RandomPhotoUi
+import evgeniy.ryzhikov.feature_random_photo.models.toImageInfoEntity
 import evgeniy.ryzhikov.feature_random_photo.models.toRandomPhotoUi
 import evgeniy.ryzhikov.remote.data.dto.ApodResultDtoList
 import evgeniy.ryzhikov.remote.domain.GetRandomPhotoUseCase
@@ -16,7 +20,9 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 class RandomPhotoViewModel @Inject constructor(
-    private val getRandomPhotoUseCase: GetRandomPhotoUseCase
+    private val getRandomPhotoUseCase: GetRandomPhotoUseCase,
+    private val addToFavoriteUseCase: AddToFavoriteUseCase,
+    private val deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
 ) : ViewModel() {
 
     private val _randomPhoto = MutableSharedFlow<ApiResult<Any>>()
@@ -37,6 +43,18 @@ class RandomPhotoViewModel @Inject constructor(
                 _randomPhoto.emit(result)
             }
         }
+    }
+
+    fun toFavorite(isAdd: Boolean, randomPhotoUi: RandomPhotoUi) {
+        viewModelScope.launch {
+            if (isAdd) {
+                addToFavoriteUseCase.execute(randomPhotoUi.toImageInfoEntity())
+            } else {
+                deleteFromFavoriteUseCase.execute(randomPhotoUi.uuid)
+            }
+        }
+
+
     }
 
 }
