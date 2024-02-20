@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/random_photo_graph"
+    app:startDestination="@id/randomPhotoFragment">
+
+    <fragment
+        android:id="@+id/randomPhotoFragment"
+        android:name="evgeniy.ryzhikov.feature_random_photo.ui.RandomPhotoFragment"
+        android:label="RandomPhotoFragment"
+        tools:layout="@layout/fragment_random_photo"/>
+</navigation>
