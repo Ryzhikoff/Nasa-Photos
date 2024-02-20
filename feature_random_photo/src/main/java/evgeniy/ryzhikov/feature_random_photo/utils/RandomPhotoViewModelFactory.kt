@@ -6,7 +6,6 @@ import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.feature_random_photo.ui.RandomPhotoViewModel
 import evgeniy.ryzhikov.remote.domain.GetRandomPhotoUseCase
-import java.security.PrivateKey
 
 import javax.inject.Inject
 
