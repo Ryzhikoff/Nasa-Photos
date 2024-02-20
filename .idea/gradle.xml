@@ -24,10 +24,10 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/feature_details" />
             <option value="$PROJECT_DIR$/feature_favorites" />
             <option value="$PROJECT_DIR$/feature_random_photo" />
             <option value="$PROJECT_DIR$/feature_search" />
-            <option value="$PROJECT_DIR$/features_details" />
             <option value="$PROJECT_DIR$/remote" />
             <option value="$PROJECT_DIR$/utils" />
           </set>

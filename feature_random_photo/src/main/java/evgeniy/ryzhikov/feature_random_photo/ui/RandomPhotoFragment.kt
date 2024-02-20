@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import evgeniy.ryzhikov.core.utils.GlideListener
 import evgeniy.ryzhikov.feature_random_photo.R
 import evgeniy.ryzhikov.feature_random_photo.databinding.FragmentRandomPhotoBinding
-import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoComponentProvider
+import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
 import evgeniy.ryzhikov.feature_random_photo.models.RandomPhotoUi
 import evgeniy.ryzhikov.feature_random_photo.utils.RandomPhotoViewModelFactory
 import evgeniy.ryzhikov.remote.models.doOnError
@@ -32,6 +32,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     lateinit var viewModelFactory: RandomPhotoViewModelFactory
 
     private val viewModel: RandomPhotoViewModel by viewModels { viewModelFactory }
+    private var randomPhotoUi: RandomPhotoUi? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         (requireActivity().application as RandomPhotoComponentProvider)
@@ -56,7 +57,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
                     setContent(it as RandomPhotoUi)
                 }
 
-                result.doOnError {errorBody ->
+                result.doOnError { errorBody ->
                     printError(errorBody)
                 }
 
@@ -66,6 +67,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     }
 
     private fun setContent(model: RandomPhotoUi) {
+        randomPhotoUi = model
         setImage(model.imageUrl)
         with(binding) {
             title.text = model.title
@@ -78,10 +80,10 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         Glide.with(this)
             .load(url)
             .error(evgeniy.ryzhikov.core.R.drawable.ic_not_load)
-            .listener(GlideListener.OnCompleted{
+            .listener(GlideListener.OnCompleted {
                 showProgressBar(false)
             })
-            .transform(CenterInside(), RoundedCorners(20.toPx))
+            .transform(CenterCrop(), RoundedCorners(20.toPx))
             .into(binding.randomImage)
     }
 
@@ -89,11 +91,26 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         Toast.makeText(requireContext(), getString(evgeniy.ryzhikov.core.R.string.error_load, errorBody), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setClickListeners() {
-        binding.update.setOnClickListener {
-            viewModel.getRandomPhoto()
-            it.isEnabled = false
-            showProgressBar(true)
+    private fun setClickListeners() = with(binding) {
+        update.setOnClickListener {
+            onUpdatePhotoClick(it)
+        }
+        favoritesButton.setOnClickListener {
+            onFavoriteButtonClick()
+        }
+    }
+
+    private fun onUpdatePhotoClick(it: View) {
+        it.isEnabled = false
+        showProgressBar(true)
+        binding.favoritesButton.isSelected = false
+        viewModel.getRandomPhoto()
+    }
+
+    private fun onFavoriteButtonClick() = with(binding) {
+        randomPhotoUi?.let {
+            favoritesButton.isSelected = !favoritesButton.isSelected
+            viewModel.toFavorite(isAdd = favoritesButton.isSelected, randomPhotoUi = it)
         }
     }
 
