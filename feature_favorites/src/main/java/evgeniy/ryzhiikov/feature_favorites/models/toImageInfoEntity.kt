@@ -1,20 +1,8 @@
-package evgeniy.ryzhikov.feature_random_photo.models
+package evgeniy.ryzhiikov.feature_favorites.models
 
 import evgeniy.ryzhikov.core.models.RandomPhotoUi
 import evgeniy.ryzhikov.database_module.data.room.entity.ImageInfoEntity
-import evgeniy.ryzhikov.remote.data.dto.ApodResultDto
 
-
-fun ApodResultDto.toRandomPhotoUi(): RandomPhotoUi =
-    RandomPhotoUi(
-        imageUrl = url,
-        imageUrlHD = hdUrl,
-        title = title,
-        date = date,
-        description = explanation,
-        tags = null,
-        isFavorite = false,
-    )
 fun RandomPhotoUi.toImageInfoEntity(): ImageInfoEntity =
     ImageInfoEntity(
         title = title,
