@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -27,6 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -44,5 +49,9 @@ dependencies {
     implementation(AndroidX.fragmentKtx)
     implementation(Glide.lib)
 
+    implementation(Dagger.dagger_lib)
+    ksp(Dagger.dagger_compiler)
+
     implementation(project(":core"))
+    implementation(project(":database"))
 }

@@ -13,11 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import evgeniy.ryzhikov.core.models.RandomPhotoUi
 import evgeniy.ryzhikov.core.utils.GlideListener
+import evgeniy.ryzhikov.core.utils.toPx
 import evgeniy.ryzhikov.feature_random_photo.R
 import evgeniy.ryzhikov.feature_random_photo.databinding.FragmentRandomPhotoBinding
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
-import evgeniy.ryzhikov.feature_random_photo.models.RandomPhotoUi
 import evgeniy.ryzhikov.feature_random_photo.utils.RandomPhotoViewModelFactory
 import evgeniy.ryzhikov.remote.models.doOnError
 import evgeniy.ryzhikov.remote.models.doOnSuccess
@@ -123,6 +124,3 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         _binding = null
     }
 }
-
-
-val Int.toPx get() = (this * Resources.getSystem().displayMetrics.density).toInt()

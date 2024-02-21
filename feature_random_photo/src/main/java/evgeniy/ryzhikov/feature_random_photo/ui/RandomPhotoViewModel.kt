@@ -2,9 +2,9 @@ package evgeniy.ryzhikov.feature_random_photo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import evgeniy.ryzhikov.core.models.RandomPhotoUi
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
-import evgeniy.ryzhikov.feature_random_photo.models.RandomPhotoUi
 import evgeniy.ryzhikov.feature_random_photo.models.toImageInfoEntity
 import evgeniy.ryzhikov.feature_random_photo.models.toRandomPhotoUi
 import evgeniy.ryzhikov.remote.data.dto.ApodResultDtoList
