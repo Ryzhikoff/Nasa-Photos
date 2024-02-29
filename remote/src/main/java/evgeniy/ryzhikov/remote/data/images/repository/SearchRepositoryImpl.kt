@@ -1,7 +1,7 @@
-package evgeniy.ryzhikov.remote.data.images
+package evgeniy.ryzhikov.remote.data.images.repository
 
+import evgeniy.ryzhikov.remote.data.images.ImageApi
 import evgeniy.ryzhikov.remote.data.images.dto.SearchResultDto
-import evgeniy.ryzhikov.remote.data.images.repository.SearchRepository
 import evgeniy.ryzhikov.remote.models.ApiResult
 import javax.inject.Inject
 

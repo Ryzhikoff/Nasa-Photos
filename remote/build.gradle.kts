@@ -46,6 +46,10 @@ dependencies {
     implementation(Retrofit.converter)
     implementation(Retrofit.logging)
 
+    implementation(AndroidX.paging)
+
     implementation(KotlinX.serialization)
+
+    implementation(project(":core"))
 
 }

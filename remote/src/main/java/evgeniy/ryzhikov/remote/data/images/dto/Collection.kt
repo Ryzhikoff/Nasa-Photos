@@ -7,7 +7,7 @@ data class Collection(
     @SerializedName("href")
     val href: String,
     @SerializedName("items")
-    val items: List<Item>,
+    val items: List<SearchItemDto>,
     @SerializedName("links")
     val links: List<LinkX>,
     @SerializedName("metadata")

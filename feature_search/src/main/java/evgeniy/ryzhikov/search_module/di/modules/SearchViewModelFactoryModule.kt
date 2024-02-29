@@ -5,6 +5,7 @@ import dagger.Provides
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.IsFavoritesUseCase
+import evgeniy.ryzhikov.remote.data.images.ImagesPageSource
 import evgeniy.ryzhikov.remote.domain.SearchUseCase
 import evgeniy.ryzhikov.search_module.utils.SearchViewModelFactory
 import javax.inject.Singleton
@@ -19,6 +20,7 @@ class SearchViewModelFactoryModule {
         addToFavoriteUseCase: AddToFavoriteUseCase,
         deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
         isFavoritesUseCase: IsFavoritesUseCase,
+        imagesPageSource: ImagesPageSource.Factory
     ): SearchViewModelFactory =
-        SearchViewModelFactory(searchUseCase, addToFavoriteUseCase, deleteFromFavoriteUseCase, isFavoritesUseCase)
+        SearchViewModelFactory(searchUseCase, addToFavoriteUseCase, deleteFromFavoriteUseCase, isFavoritesUseCase, imagesPageSource)
 }

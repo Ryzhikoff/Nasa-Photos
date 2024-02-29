@@ -5,8 +5,8 @@ import dagger.Provides
 import evgeniy.ryzhikov.remote.BuildConfig
 import evgeniy.ryzhikov.remote.data.Constants
 import evgeniy.ryzhikov.remote.data.images.ImageApi
-import evgeniy.ryzhikov.remote.data.images.SearchRepositoryImpl
 import evgeniy.ryzhikov.remote.data.images.repository.SearchRepository
+import evgeniy.ryzhikov.remote.data.images.repository.SearchRepositoryImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

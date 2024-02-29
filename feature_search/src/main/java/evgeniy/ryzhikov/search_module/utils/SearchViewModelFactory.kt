@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.IsFavoritesUseCase
+import evgeniy.ryzhikov.remote.data.images.ImagesPageSource
 import evgeniy.ryzhikov.remote.domain.SearchUseCase
 import evgeniy.ryzhikov.search_module.ui.SearchViewModel
 
@@ -15,6 +16,7 @@ class SearchViewModelFactory @Inject constructor(
     private val addToFavoriteUseCase: AddToFavoriteUseCase,
     private val deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
     private val isFavoritesUseCase: IsFavoritesUseCase,
+    private val pagingSourceFactory: ImagesPageSource.Factory,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
@@ -24,6 +26,7 @@ class SearchViewModelFactory @Inject constructor(
                 addToFavoriteUseCase = addToFavoriteUseCase,
                 deleteFromFavoriteUseCase = deleteFromFavoriteUseCase,
                 isFavoritesUseCase = isFavoritesUseCase,
+                pagingSourceFactory = pagingSourceFactory,
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

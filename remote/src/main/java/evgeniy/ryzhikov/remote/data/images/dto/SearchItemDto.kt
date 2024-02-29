@@ -3,7 +3,7 @@ package evgeniy.ryzhikov.remote.data.images.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Item(
+data class SearchItemDto(
     @SerializedName("data")
     val `data`: List<Data>,
     @SerializedName("href")
