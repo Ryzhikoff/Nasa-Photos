@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -36,11 +38,6 @@ android {
 dependencies {
 
     implementation(AndroidX.core)
-    implementation(AndroidX.appcompat)
-    implementation(AndroidX.material)
-    testImplementation(Junit.junit)
-    androidTestImplementation(AndroidX.junit)
-    androidTestImplementation(AndroidX.espresso)
 
     implementation(Dagger.dagger_lib)
     ksp(Dagger.dagger_compiler)
@@ -48,5 +45,7 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.converter)
     implementation(Retrofit.logging)
+
+    implementation(KotlinX.serialization)
 
 }

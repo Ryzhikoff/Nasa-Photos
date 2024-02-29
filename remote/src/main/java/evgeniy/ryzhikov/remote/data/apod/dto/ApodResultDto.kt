@@ -1,4 +1,4 @@
-package evgeniy.ryzhikov.remote.data.dto
+package evgeniy.ryzhikov.remote.data.apod.dto
 
 
 import com.google.gson.annotations.SerializedName

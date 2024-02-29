@@ -28,6 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = "19"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -36,7 +40,7 @@ dependencies {
     implementation(AndroidX.appcompat)
     implementation(AndroidX.material)
     implementation(AndroidX.constraintLayout)
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(AndroidX.coordinatorLayout)
     testImplementation(Junit.junit)
     androidTestImplementation(AndroidX.junit)
     androidTestImplementation(AndroidX.espresso)
@@ -44,9 +48,17 @@ dependencies {
     implementation(AndroidX.Navigation.fragment)
     implementation(AndroidX.Navigation.ui)
     implementation(AndroidX.fragmentKtx)
+    implementation(AndroidX.paging)
+
     implementation(Glide.lib)
+
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.converter)
+    implementation(Retrofit.logging)
 
     implementation(Dagger.dagger_lib)
     ksp(Dagger.dagger_compiler)
     implementation(project(":core"))
+    implementation(project(":remote"))
+    implementation(project(":database"))
 }

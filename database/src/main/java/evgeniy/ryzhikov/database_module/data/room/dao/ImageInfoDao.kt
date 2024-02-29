@@ -15,6 +15,9 @@ interface ImageInfoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(imageInfoEntity: ImageInfoEntity)
 
-    @Query("DELETE FROM $TABLE_NAME_IMAGE_INFO WHERE uuid LIKE :uuid")
-    suspend fun deleteById(uuid: String)
+    @Query("DELETE FROM $TABLE_NAME_IMAGE_INFO WHERE title LIKE :title AND link LIKE :link")
+    suspend fun deleteById(title: String, link: String)
+
+    @Query("SELECT * FROM $TABLE_NAME_IMAGE_INFO WHERE title LIKE :title AND link LIKE :link")
+    suspend fun getImageInfo(title: String, link: String): ImageInfoEntity?
 }

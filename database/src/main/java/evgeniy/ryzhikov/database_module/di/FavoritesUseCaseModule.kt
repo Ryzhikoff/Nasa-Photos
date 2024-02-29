@@ -6,6 +6,7 @@ import evgeniy.ryzhikov.database_module.data.FavoriteRepository
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.GetAllFavoritesUseCase
+import evgeniy.ryzhikov.database_module.domain.IsFavoritesUseCase
 import javax.inject.Singleton
 
 @Module(
@@ -29,4 +30,9 @@ class FavoritesUseCaseModule {
     @Provides
     fun provideGetAllFavoritesUseCase(favoriteRepository: FavoriteRepository): GetAllFavoritesUseCase =
         GetAllFavoritesUseCase(favoriteRepository)
+
+    @Singleton
+    @Provides
+    fun provideIsFavoriteUseCase(favoriteRepository: FavoriteRepository): IsFavoritesUseCase =
+        IsFavoritesUseCase(repository = favoriteRepository)
 }

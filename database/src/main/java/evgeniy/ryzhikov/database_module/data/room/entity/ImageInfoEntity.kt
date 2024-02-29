@@ -9,7 +9,7 @@ import evgeniy.ryzhikov.database_module.data.TABLE_NAME_IMAGE_INFO
 @Entity(
     tableName = TABLE_NAME_IMAGE_INFO,
     indices = [Index(
-        value = ["uuid"],
+        value = ["title", "link"],
         unique = true,
     )]
 )
@@ -20,6 +20,5 @@ data class ImageInfoEntity(
     @ColumnInfo(name = "link") val link: String,
     @ColumnInfo(name = "link_uhd") val linkUhd: String,
     @ColumnInfo(name = "date") val date: String,
-    @ColumnInfo(name = "uuid") val uuid: String,
     @ColumnInfo(name = "tags", defaultValue = "") val tags: String?,
 )

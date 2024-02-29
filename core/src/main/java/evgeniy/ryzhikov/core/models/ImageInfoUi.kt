@@ -1,14 +1,12 @@
 package evgeniy.ryzhikov.core.models
 
-import java.util.UUID
 
-data class RandomPhotoUi(
-    val uuid: String = UUID.randomUUID().toString(),
+data class ImageInfoUi(
     val imageUrl: String?,
     val imageUrlHD: String?,
     val title: String,
     val date: String,
     val description: String,
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     val tags: List<String>?,
 )

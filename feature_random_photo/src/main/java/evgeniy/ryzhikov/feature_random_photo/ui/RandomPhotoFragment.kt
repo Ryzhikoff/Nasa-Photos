@@ -1,6 +1,5 @@
 package evgeniy.ryzhikov.feature_random_photo.ui
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.core.utils.GlideListener
 import evgeniy.ryzhikov.core.utils.toPx
 import evgeniy.ryzhikov.feature_random_photo.R
@@ -33,7 +32,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     lateinit var viewModelFactory: RandomPhotoViewModelFactory
 
     private val viewModel: RandomPhotoViewModel by viewModels { viewModelFactory }
-    private var randomPhotoUi: RandomPhotoUi? = null
+    private var randomPhotoUi: ImageInfoUi? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         (requireActivity().application as RandomPhotoComponentProvider)
@@ -55,7 +54,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.randomPhoto.collect { result ->
                 result.doOnSuccess {
-                    setContent(it as RandomPhotoUi)
+                    setContent(it as ImageInfoUi)
                 }
 
                 result.doOnError { errorBody ->
@@ -67,7 +66,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         }
     }
 
-    private fun setContent(model: RandomPhotoUi) {
+    private fun setContent(model: ImageInfoUi) {
         randomPhotoUi = model
         setImage(model.imageUrl)
         with(binding) {

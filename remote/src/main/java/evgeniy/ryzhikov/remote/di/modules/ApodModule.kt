@@ -4,9 +4,9 @@ import dagger.Module
 import dagger.Provides
 import evgeniy.ryzhikov.remote.BuildConfig
 import evgeniy.ryzhikov.remote.data.Constants
-import evgeniy.ryzhikov.remote.data.NasaApi
-import evgeniy.ryzhikov.remote.data.repository.NasaRepository
-import evgeniy.ryzhikov.remote.data.repository.NasaRepositoryImpl
+import evgeniy.ryzhikov.remote.data.apod.ApodApi
+import evgeniy.ryzhikov.remote.data.apod.repository.ApodRepository
+import evgeniy.ryzhikov.remote.data.apod.repository.ApodRepositoryImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class RemoteModule {
+class ApodModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
@@ -30,17 +30,17 @@ class RemoteModule {
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .client(client)
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.BASE_URL_APOD)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Singleton
     @Provides
-    fun provideNasaApi(retrofit: Retrofit): NasaApi =
-        retrofit.create(NasaApi::class.java)
+    fun provideApodApi(retrofit: Retrofit): ApodApi =
+        retrofit.create(ApodApi::class.java)
 
     @Singleton
     @Provides
-    fun provideNasaRepository(nasaApi: NasaApi): NasaRepository =
-        NasaRepositoryImpl(nasaApi)
+    fun provideApodRepository(nasaApi: ApodApi): ApodRepository =
+        ApodRepositoryImpl(nasaApi)
 }

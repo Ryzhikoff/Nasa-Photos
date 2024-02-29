@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="searchbar_hint">Search</string>
+    <string name="search_error">"Ошибка поиска:"</string>
+    <string name="not_found_by_query">По запросу \"%1$s\" ни чего не нашлось</string>
+</resources>

@@ -12,19 +12,25 @@ import evgeniy.ryzhikov.feature_random_photo.di.DaggerRandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
 import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoViewModelFactoryModule
+import evgeniy.ryzhikov.remote.di.modules.ApodModule
 import evgeniy.ryzhikov.remote.di.modules.GetRandomPhotoUseCaseModule
-import evgeniy.ryzhikov.remote.di.modules.RemoteModule
+import evgeniy.ryzhikov.remote.di.modules.SearchUseCaseModule
+import evgeniy.ryzhikov.search_module.di.DaggerSearchComponent
+import evgeniy.ryzhikov.search_module.di.SearchComponent
+import evgeniy.ryzhikov.search_module.di.modules.SearchComponentProvider
+import evgeniy.ryzhikov.search_module.di.modules.SearchViewModelFactoryModule
 
 class App : Application(),
     RandomPhotoComponentProvider,
-    FavoritesComponentProvider {
+    FavoritesComponentProvider,
+    SearchComponentProvider {
 
     private val provideContextModule by lazy {
         ProvideContextModule(this)
     }
 
-    private val remoteModule by lazy {
-        RemoteModule()
+    private val apodModule by lazy {
+        ApodModule()
     }
 
     private val databaseModule by lazy {
@@ -32,12 +38,11 @@ class App : Application(),
     }
 
 
-
     override fun getRandomPhotoComponent(): RandomPhotoComponent =
         DaggerRandomPhotoComponent.builder()
             .getRandomPhotoUseCaseModule(GetRandomPhotoUseCaseModule())
             .randomPhotoViewModelFactoryModule(RandomPhotoViewModelFactoryModule())
-            .remoteModule(remoteModule)
+            .apodModule(apodModule)
             .databaseModule(databaseModule)
             .favoritesUseCaseModule(FavoritesUseCaseModule())
             .provideContextModule(provideContextModule)
@@ -49,6 +54,16 @@ class App : Application(),
             .databaseModule(databaseModule)
             .favoritesUseCaseModule(FavoritesUseCaseModule())
             .provideFavoritesViewModelFactoryModule(ProvideFavoritesViewModelFactoryModule())
+            .build()
+
+    override fun getSearchComponent(): SearchComponent =
+        DaggerSearchComponent.builder()
+            .provideContextModule(provideContextModule)
+            .searchUseCaseModule(SearchUseCaseModule())
+            .searchViewModelFactoryModule(SearchViewModelFactoryModule())
+            .searchUseCaseModule(SearchUseCaseModule())
+            .databaseModule(databaseModule)
+            .favoritesUseCaseModule(FavoritesUseCaseModule())
             .build()
 
 }

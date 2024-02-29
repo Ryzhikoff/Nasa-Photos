@@ -11,10 +11,14 @@ class FavoriteRepositoryImpl @Inject constructor(
         imageInfoDao.add(imageInfo)
     }
 
-    override suspend fun removeFromFavorites(uuid: String) {
-        imageInfoDao.deleteById(uuid)
+    override suspend fun removeFromFavorites(entity: ImageInfoEntity) {
+        imageInfoDao.deleteById(title = entity.title, link = entity.link)
     }
 
     override suspend fun getAllFavorites(): List<ImageInfoEntity> =
         imageInfoDao.getAllFavorites()
+
+    override suspend fun isFavorites(entity: ImageInfoEntity): Boolean =
+        imageInfoDao.getImageInfo(title = entity.title, link = entity.link) != null
+
 }

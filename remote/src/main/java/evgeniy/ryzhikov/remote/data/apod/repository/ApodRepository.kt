@@ -1,7 +1,7 @@
-package evgeniy.ryzhikov.remote.data.repository
+package evgeniy.ryzhikov.remote.data.apod.repository
 
 import evgeniy.ryzhikov.remote.models.ApiResult
 
-interface NasaRepository {
+interface ApodRepository {
     suspend fun getRandomPhoto(): ApiResult<Any>
 }
