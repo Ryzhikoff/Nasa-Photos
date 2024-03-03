@@ -2,12 +2,12 @@ package evgeniy.ryzhikov.feature_random_photo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.feature_random_photo.models.toImageInfoEntity
-import evgeniy.ryzhikov.feature_random_photo.models.toRandomPhotoUi
-import evgeniy.ryzhikov.remote.data.dto.ApodResultDtoList
+import evgeniy.ryzhikov.feature_random_photo.models.toImageInfoUi
+import evgeniy.ryzhikov.remote.data.apod.dto.ApodResultDtoList
 import evgeniy.ryzhikov.remote.domain.GetRandomPhotoUseCase
 import evgeniy.ryzhikov.remote.models.ApiResult
 import evgeniy.ryzhikov.remote.models.doOnError
@@ -36,7 +36,7 @@ class RandomPhotoViewModel @Inject constructor(
             result.doOnSuccess {
                 val resultList = it as ApodResultDtoList
                 val randomDto = resultList[Random.nextInt(0, resultList.size)]
-                _randomPhoto.emit(ApiResult.Success(randomDto.toRandomPhotoUi()))
+                _randomPhoto.emit(ApiResult.Success(randomDto.toImageInfoUi()))
             }
 
             result.doOnError {
@@ -45,15 +45,14 @@ class RandomPhotoViewModel @Inject constructor(
         }
     }
 
-    fun toFavorite(isAdd: Boolean, randomPhotoUi: RandomPhotoUi) {
+    fun toFavorite(isAdd: Boolean, randomPhotoUi: ImageInfoUi) {
         viewModelScope.launch {
             if (isAdd) {
                 addToFavoriteUseCase.execute(randomPhotoUi.toImageInfoEntity())
             } else {
-                deleteFromFavoriteUseCase.execute(randomPhotoUi.uuid)
+                deleteFromFavoriteUseCase.execute(randomPhotoUi.toImageInfoEntity())
             }
         }
-
 
     }
 

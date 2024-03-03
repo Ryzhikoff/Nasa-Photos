@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import evgeniy.ryzhiikov.feature_favorites.models.toImageInfoEntity
 import evgeniy.ryzhiikov.feature_favorites.models.toRandomPhotoUi
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.GetAllFavoritesUseCase
@@ -20,7 +20,7 @@ class FavoritesViewModel @Inject constructor(
     private val addToFavoriteUseCase: AddToFavoriteUseCase,
 ) : ViewModel() {
 
-    private val _favoriteList = MutableSharedFlow<List<RandomPhotoUi>>()
+    private val _favoriteList = MutableSharedFlow<List<ImageInfoUi>>()
     val favoriteList = _favoriteList.asSharedFlow()
 
     fun getFavoritesList() {
@@ -30,15 +30,15 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun deleteFromFavorites(randomPhotoUi: RandomPhotoUi) {
+    fun deleteFromFavorites(randomPhotoUi: ImageInfoUi) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteFromFavoriteUseCase.execute(randomPhotoUi.uuid)
+            deleteFromFavoriteUseCase.execute(randomPhotoUi.toImageInfoEntity())
         }
     }
 
 
-    fun addToFavorite(randomPhotoUi: RandomPhotoUi) {
-        viewModelScope.launch {
+    fun addToFavorite(randomPhotoUi: ImageInfoUi) {
+        viewModelScope.launch(Dispatchers.IO) {
             addToFavoriteUseCase.execute(randomPhotoUi.toImageInfoEntity())
         }
     }

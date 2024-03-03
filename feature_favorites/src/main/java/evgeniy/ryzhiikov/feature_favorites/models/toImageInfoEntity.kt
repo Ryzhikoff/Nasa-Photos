@@ -1,16 +1,15 @@
 package evgeniy.ryzhiikov.feature_favorites.models
 
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.database_module.data.room.entity.ImageInfoEntity
 
-fun RandomPhotoUi.toImageInfoEntity(): ImageInfoEntity =
+fun ImageInfoUi.toImageInfoEntity(): ImageInfoEntity =
     ImageInfoEntity(
         title = title,
         description = description,
         link = imageUrl ?: "",
         linkUhd = imageUrlHD ?: "",
         date = date,
-        uuid = uuid,
         tags = tags?.asString()
     )
 

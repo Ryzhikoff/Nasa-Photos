@@ -1,25 +1,27 @@
 package evgeniy.ryzhikov.feature_random_photo.ui
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.core.utils.GlideListener
 import evgeniy.ryzhikov.core.utils.toPx
 import evgeniy.ryzhikov.feature_random_photo.R
 import evgeniy.ryzhikov.feature_random_photo.databinding.FragmentRandomPhotoBinding
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
 import evgeniy.ryzhikov.feature_random_photo.utils.RandomPhotoViewModelFactory
+import evgeniy.ryzhikov.features_details.ui.DetailsFragment.Companion.KEY_DETAILS_ITEM
 import evgeniy.ryzhikov.remote.models.doOnError
 import evgeniy.ryzhikov.remote.models.doOnSuccess
 import kotlinx.coroutines.launch
@@ -33,7 +35,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     lateinit var viewModelFactory: RandomPhotoViewModelFactory
 
     private val viewModel: RandomPhotoViewModel by viewModels { viewModelFactory }
-    private var randomPhotoUi: RandomPhotoUi? = null
+    private var imageInfoUi: ImageInfoUi? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         (requireActivity().application as RandomPhotoComponentProvider)
@@ -55,7 +57,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.randomPhoto.collect { result ->
                 result.doOnSuccess {
-                    setContent(it as RandomPhotoUi)
+                    setContent(it as ImageInfoUi)
                 }
 
                 result.doOnError { errorBody ->
@@ -67,8 +69,8 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         }
     }
 
-    private fun setContent(model: RandomPhotoUi) {
-        randomPhotoUi = model
+    private fun setContent(model: ImageInfoUi) {
+        imageInfoUi = model
         setImage(model.imageUrl)
         with(binding) {
             title.text = model.title
@@ -99,6 +101,17 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
         favoritesButton.setOnClickListener {
             onFavoriteButtonClick()
         }
+
+        randomImage.setOnClickListener {
+            navigateToDetails()
+        }
+    }
+
+    private fun navigateToDetails() {
+        imageInfoUi?.let {
+            val extras = bundleOf(Pair(KEY_DETAILS_ITEM, imageInfoUi))
+            findNavController().navigate(R.id.action_randomPhotoFragment_to_detailsFragment, extras)
+        }
     }
 
     private fun onUpdatePhotoClick(it: View) {
@@ -109,7 +122,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     }
 
     private fun onFavoriteButtonClick() = with(binding) {
-        randomPhotoUi?.let {
+        imageInfoUi?.let {
             favoritesButton.isSelected = !favoritesButton.isSelected
             viewModel.toFavorite(isAdd = favoritesButton.isSelected, randomPhotoUi = it)
         }

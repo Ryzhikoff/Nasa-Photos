@@ -1,11 +1,12 @@
-package evgeniy.ryzhikov.remote.data
+package evgeniy.ryzhikov.remote.data.apod
 
-import evgeniy.ryzhikov.remote.data.dto.ApodResultDtoList
+import evgeniy.ryzhikov.remote.data.Constants
+import evgeniy.ryzhikov.remote.data.apod.dto.ApodResultDtoList
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface NasaApi {
+interface ApodApi {
 
     @GET("planetary/apod")
     suspend fun getRandomPhoto(

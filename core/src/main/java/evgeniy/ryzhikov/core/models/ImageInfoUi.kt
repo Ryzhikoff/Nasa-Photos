@@ -1,14 +1,15 @@
 package evgeniy.ryzhikov.core.models
 
-import java.util.UUID
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class RandomPhotoUi(
-    val uuid: String = UUID.randomUUID().toString(),
+@Parcelize
+data class ImageInfoUi(
     val imageUrl: String?,
     val imageUrlHD: String?,
     val title: String,
     val date: String,
     val description: String,
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     val tags: List<String>?,
-)
+): Parcelable

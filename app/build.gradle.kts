@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -60,6 +61,7 @@ dependencies {
     implementation(project(":feature_random_photo"))
     implementation(project(":feature_search"))
     implementation(project(":feature_favorites"))
+    implementation(project(":feature_details"))
     implementation(project(":database"))
     implementation(project(":utils"))
     implementation(project(":remote"))

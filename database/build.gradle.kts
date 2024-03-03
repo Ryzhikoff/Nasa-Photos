@@ -46,4 +46,6 @@ dependencies {
     implementation(Dagger.dagger_lib)
     ksp(Dagger.dagger_compiler)
 
+    implementation(project(":core"))
+
 }

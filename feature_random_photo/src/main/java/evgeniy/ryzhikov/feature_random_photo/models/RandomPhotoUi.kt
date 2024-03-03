@@ -1,12 +1,12 @@
 package evgeniy.ryzhikov.feature_random_photo.models
 
-import evgeniy.ryzhikov.core.models.RandomPhotoUi
+import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.database_module.data.room.entity.ImageInfoEntity
-import evgeniy.ryzhikov.remote.data.dto.ApodResultDto
+import evgeniy.ryzhikov.remote.data.apod.dto.ApodResultDto
 
 
-fun ApodResultDto.toRandomPhotoUi(): RandomPhotoUi =
-    RandomPhotoUi(
+fun ApodResultDto.toImageInfoUi(): ImageInfoUi =
+    ImageInfoUi(
         imageUrl = url,
         imageUrlHD = hdUrl,
         title = title,
@@ -15,14 +15,13 @@ fun ApodResultDto.toRandomPhotoUi(): RandomPhotoUi =
         tags = null,
         isFavorite = false,
     )
-fun RandomPhotoUi.toImageInfoEntity(): ImageInfoEntity =
+fun ImageInfoUi.toImageInfoEntity(): ImageInfoEntity =
     ImageInfoEntity(
         title = title,
         description = description,
         link = imageUrl ?: "",
         linkUhd = imageUrlHD ?: "",
         date = date,
-        uuid = uuid,
         tags = tags?.asString()
     )
 
