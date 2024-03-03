@@ -2,9 +2,11 @@ package evgeniy.ryzhiikov.feature_favorites.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.feature_favorites.R
 import com.example.feature_favorites.databinding.FragmentFavoritesBinding
 import com.google.android.material.snackbar.Snackbar
@@ -12,6 +14,7 @@ import evgeniy.ryzhiikov.feature_favorites.di.modules.FavoritesComponentProvider
 import evgeniy.ryzhiikov.feature_favorites.utils.FavoritesViewModelFactory
 import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.core.ui.rv.ImageInfoAdapter
+import evgeniy.ryzhikov.features_details.ui.DetailsFragment.Companion.KEY_DETAILS_ITEM
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,7 +35,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private val onItemClickListener = object : ImageInfoAdapter.OnItemClickListener {
         override fun onClick(imageInfoUi: ImageInfoUi) {
-            println("onItemClickListener $imageInfoUi")
+            navigateToDetails(imageInfoUi)
         }
 
     }
@@ -79,6 +82,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         }
     }
 
+    private fun navigateToDetails(imageInfoUi: ImageInfoUi) {
+        val extras = bundleOf(Pair(KEY_DETAILS_ITEM, imageInfoUi))
+        findNavController().navigate(R.id.action_favoritesFragment_to_detailsFragment, extras)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

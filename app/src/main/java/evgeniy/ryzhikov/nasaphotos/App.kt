@@ -12,6 +12,9 @@ import evgeniy.ryzhikov.feature_random_photo.di.DaggerRandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
 import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoViewModelFactoryModule
+import evgeniy.ryzhikov.features_details.di.DaggerDetailsComponent
+import evgeniy.ryzhikov.features_details.di.DetailsComponent
+import evgeniy.ryzhikov.features_details.di.DetailsComponentProvider
 import evgeniy.ryzhikov.remote.di.modules.ApodModule
 import evgeniy.ryzhikov.remote.di.modules.GetRandomPhotoUseCaseModule
 import evgeniy.ryzhikov.remote.di.modules.SearchUseCaseModule
@@ -23,7 +26,8 @@ import evgeniy.ryzhikov.search_module.di.modules.SearchViewModelFactoryModule
 class App : Application(),
     RandomPhotoComponentProvider,
     FavoritesComponentProvider,
-    SearchComponentProvider {
+    SearchComponentProvider,
+    DetailsComponentProvider {
 
     private val provideContextModule by lazy {
         ProvideContextModule(this)
@@ -65,5 +69,13 @@ class App : Application(),
             .databaseModule(databaseModule)
             .favoritesUseCaseModule(FavoritesUseCaseModule())
             .build()
+
+    override fun getDetailComponent(): DetailsComponent =
+        DaggerDetailsComponent.builder()
+            .provideContextModule(provideContextModule)
+            .databaseModule(databaseModule)
+            .favoritesUseCaseModule(FavoritesUseCaseModule())
+            .build()
+
 
 }

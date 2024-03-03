@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/gray_light</item>
+        <item name="colorPrimary">@color/gray_light</item>
+        <item name="android:textAppearance">@style/Subhead</item>
+    </style>
+    
+    <style name="CollapsingToolBarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/gray_light</item>
+        <item name="colorControlNormal">@color/gray_light</item>
+    </style>
+</resources>

@@ -9,5 +9,13 @@
         android:id="@+id/randomPhotoFragment"
         android:name="evgeniy.ryzhikov.feature_random_photo.ui.RandomPhotoFragment"
         android:label="RandomPhotoFragment"
-        tools:layout="@layout/fragment_random_photo"/>
+        tools:layout="@layout/fragment_random_photo">
+        <action
+            android:id="@+id/action_randomPhotoFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="evgeniy.ryzhikov.features_details.ui.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>

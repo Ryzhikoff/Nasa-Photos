@@ -59,4 +59,5 @@ dependencies {
     implementation(project(":remote"))
     implementation(project(":core"))
     implementation(project(":database"))
+    implementation(project(":feature_details"))
 }

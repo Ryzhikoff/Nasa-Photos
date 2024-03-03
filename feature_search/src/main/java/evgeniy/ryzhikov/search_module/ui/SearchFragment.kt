@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.feature_search.R
 import evgeniy.ryzhikov.feature_search.databinding.FragmentSearchBinding
+import evgeniy.ryzhikov.features_details.ui.DetailsFragment
 import evgeniy.ryzhikov.search_module.di.modules.SearchComponentProvider
 import evgeniy.ryzhikov.search_module.ui.rv.ImageInfoPagingAdapter
 import evgeniy.ryzhikov.search_module.ui.rv.ImageLoaderStateAdapter
@@ -33,6 +36,13 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     lateinit var viewModelFactory: SearchViewModelFactory
 
     private val viewModel: SearchViewModel by viewModels { viewModelFactory }
+
+    private val onItemClickListener = object : ImageInfoPagingAdapter.OnItemClickListener {
+        override fun onClick(imageInfoUi: ImageInfoUi) {
+            navigateToDetails(imageInfoUi)
+        }
+
+    }
 
     private val onTagClickListener = object : ImageInfoPagingAdapter.OnTagClickListener {
         override fun onClick(tagName: String) {
@@ -53,6 +63,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         ImageInfoPagingAdapter(
             onTagClickListener = onTagClickListener,
             onFavoriteClickListener = onFavoriteClickListener,
+            onItemClickListener = onItemClickListener,
         )
     }
 
@@ -122,6 +133,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.setQuery(query)
     }
 
+    private fun navigateToDetails(imageInfoUi: ImageInfoUi) {
+        val extras = bundleOf(Pair(DetailsFragment.KEY_DETAILS_ITEM, imageInfoUi))
+        findNavController().navigate(R.id.action_searchFragment_to_detailsFragment, extras)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
