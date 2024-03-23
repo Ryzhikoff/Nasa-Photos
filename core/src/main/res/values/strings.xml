@@ -6,4 +6,5 @@
     <string name="home_update_image">Update image</string>
     <string name="label_random_image">Random image</string>
     <string name="error_load">Неудалось загрузить данные.\nОшибка: %s</string>
+    <string name="menu_settings">Settings</string>
 </resources>

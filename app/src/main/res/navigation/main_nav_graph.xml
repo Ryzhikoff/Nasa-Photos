@@ -7,5 +7,6 @@
     <include app:graph="@navigation/random_photo_graph"/>
     <include app:graph="@navigation/search_graph"/>
     <include app:graph="@navigation/favorites_graph"/>
+    <include app:graph="@navigation/settings_graph"/>
 
 </navigation>

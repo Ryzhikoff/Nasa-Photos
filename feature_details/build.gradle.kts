@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.features_details"
+    namespace = "evgeniy.ryzhikov.features_details"
     compileSdk = 34
 
     defaultConfig {

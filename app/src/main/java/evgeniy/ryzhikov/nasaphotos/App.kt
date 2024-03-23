@@ -6,12 +6,16 @@ import evgeniy.ryzhiikov.feature_favorites.di.FavoritesComponent
 import evgeniy.ryzhiikov.feature_favorites.di.modules.FavoritesComponentProvider
 import evgeniy.ryzhiikov.feature_favorites.di.modules.ProvideFavoritesViewModelFactoryModule
 import evgeniy.ryzhikov.core.di.ProvideContextModule
+import evgeniy.ryzhikov.core.di.SettingProviderModule
 import evgeniy.ryzhikov.database_module.di.DatabaseModule
 import evgeniy.ryzhikov.database_module.di.FavoritesUseCaseModule
 import evgeniy.ryzhikov.feature_random_photo.di.DaggerRandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponent
 import evgeniy.ryzhikov.feature_random_photo.di.RandomPhotoComponentProvider
 import evgeniy.ryzhikov.feature_random_photo.di.modules.RandomPhotoViewModelFactoryModule
+import evgeniy.ryzhikov.feature_settings.di.DaggerSettingComponent
+import evgeniy.ryzhikov.feature_settings.di.SettingComponent
+import evgeniy.ryzhikov.feature_settings.di.SettingComponentProvider
 import evgeniy.ryzhikov.features_details.di.DaggerDetailsComponent
 import evgeniy.ryzhikov.features_details.di.DetailsComponent
 import evgeniy.ryzhikov.features_details.di.DetailsComponentProvider
@@ -27,7 +31,8 @@ class App : Application(),
     RandomPhotoComponentProvider,
     FavoritesComponentProvider,
     SearchComponentProvider,
-    DetailsComponentProvider {
+    DetailsComponentProvider,
+    SettingComponentProvider {
 
     private val provideContextModule by lazy {
         ProvideContextModule(this)
@@ -39,6 +44,10 @@ class App : Application(),
 
     private val databaseModule by lazy {
         DatabaseModule()
+    }
+
+    private val settingProviderModule by lazy {
+        SettingProviderModule(this)
     }
 
 
@@ -68,6 +77,7 @@ class App : Application(),
             .searchUseCaseModule(SearchUseCaseModule())
             .databaseModule(databaseModule)
             .favoritesUseCaseModule(FavoritesUseCaseModule())
+            .settingProviderModule(settingProviderModule)
             .build()
 
     override fun getDetailComponent(): DetailsComponent =
@@ -75,6 +85,11 @@ class App : Application(),
             .provideContextModule(provideContextModule)
             .databaseModule(databaseModule)
             .favoritesUseCaseModule(FavoritesUseCaseModule())
+            .build()
+
+    override fun getSettingComponent(): SettingComponent =
+        DaggerSettingComponent.builder()
+            .settingProviderModule(settingProviderModule)
             .build()
 
 

@@ -2,6 +2,7 @@ package evgeniy.ryzhikov.search_module.di
 
 import dagger.Component
 import evgeniy.ryzhikov.core.di.ProvideContextModule
+import evgeniy.ryzhikov.core.di.SettingProviderModule
 import evgeniy.ryzhikov.database_module.di.DatabaseModule
 import evgeniy.ryzhikov.database_module.di.FavoritesUseCaseModule
 import evgeniy.ryzhikov.remote.di.modules.SearchModule
@@ -20,6 +21,7 @@ import javax.inject.Singleton
         SearchViewModelFactoryModule::class,
         DatabaseModule::class,
         FavoritesUseCaseModule::class,
+        SettingProviderModule::class,
     ]
 )
 interface SearchComponent {

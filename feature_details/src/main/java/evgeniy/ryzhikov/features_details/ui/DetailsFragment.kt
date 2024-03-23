@@ -10,12 +10,12 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.example.features_details.R
-import com.example.features_details.databinding.FragmentDetailsBinding
 import evgeniy.ryzhikov.core.extensions.getParcelableCompat
 import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.core.utils.GlideListener
 import evgeniy.ryzhikov.core.utils.toPx
+import evgeniy.ryzhikov.features_details.R
+import evgeniy.ryzhikov.features_details.databinding.FragmentDetailsBinding
 import evgeniy.ryzhikov.features_details.di.DetailsComponentProvider
 import javax.inject.Inject
 import javax.inject.Provider
