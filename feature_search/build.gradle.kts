@@ -56,12 +56,11 @@ dependencies {
     implementation(Retrofit.converter)
     implementation(Retrofit.logging)
 
-    implementation(AndroidX.paging)
-
     implementation(Dagger.dagger_lib)
     ksp(Dagger.dagger_compiler)
     implementation(project(":core"))
     implementation(project(":remote"))
     implementation(project(":database"))
     implementation(project(":feature_details"))
+    implementation(project(":setting_provider"))
 }

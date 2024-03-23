@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.feature_favorites"
+    namespace = "evgeniy.ryzhikov.feature_favorites"
     compileSdk = 34
 
     defaultConfig {

@@ -1,6 +1,7 @@
 package evgeniy.ryzhikov.feature_random_photo.ui
 
 import android.os.Bundle
+import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,6 +71,7 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo) {
     }
 
     private fun setContent(model: ImageInfoUi) {
+        val s = SpannableString("")
         imageInfoUi = model
         setImage(model.imageUrl)
         with(binding) {

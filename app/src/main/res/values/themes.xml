@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/white</item>
+        <item name="sliderStyle">@style/SliderStyle</item>
     </style>
 
     <style name="Theme.NasaPhotos" parent="Base.Theme.NasaPhotos" />
@@ -17,6 +18,31 @@
 
     <style name="ActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
+    </style>
+
+    <style name="SliderStyle" parent="Widget.Material3.Slider">
+        <item name="materialThemeOverlay">@style/SliderStyle.ThemeOverlay</item>
+        <item name="labelStyle">@style/SliderStyle.LabelStyle</item>
+        <item name="trackHeight">8dp</item>
+        <item name="thumbRadius">16dp</item>
+        <item name="thumbColor">@color/dark_light</item>
+    </style>
+    
+    <style name="SliderStyle.ThemeOverlay">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/secondary</item>
+        <item name="colorOnSurface">@color/primary</item>
+    </style>
+    
+    <style name="SliderStyle.LabelStyle" parent="Widget.Material3.Tooltip">
+        <item name="android:textAppearance">@style/SliderStyle.TextStyle</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="SliderStyle.TextStyle" parent="@style/Body">
+        <item name="android:textColor">@color/primary</item>
     </style>
 
 </resources>

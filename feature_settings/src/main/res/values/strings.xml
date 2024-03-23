@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_pagination_settings">Настройки пагинации</string>
+    <string name="text_page_size">Размер загружаемой страницы</string>
+    <string name="text_page_buffer_size">Размер буффера</string>
+    <string name="text_page_init_size">Размер первой страницы</string>
+</resources>

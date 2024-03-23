@@ -2,6 +2,7 @@ package evgeniy.ryzhikov.search_module.di.modules
 
 import dagger.Module
 import dagger.Provides
+import evgeniy.ryzhikov.core.domain.SettingProvider
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.IsFavoritesUseCase
@@ -20,7 +21,8 @@ class SearchViewModelFactoryModule {
         addToFavoriteUseCase: AddToFavoriteUseCase,
         deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
         isFavoritesUseCase: IsFavoritesUseCase,
-        imagesPageSource: ImagesPageSource.Factory
+        imagesPageSource: ImagesPageSource.Factory,
+        settingProvider: SettingProvider,
     ): SearchViewModelFactory =
-        SearchViewModelFactory(searchUseCase, addToFavoriteUseCase, deleteFromFavoriteUseCase, isFavoritesUseCase, imagesPageSource)
+        SearchViewModelFactory(searchUseCase, addToFavoriteUseCase, deleteFromFavoriteUseCase, isFavoritesUseCase, imagesPageSource, settingProvider)
 }

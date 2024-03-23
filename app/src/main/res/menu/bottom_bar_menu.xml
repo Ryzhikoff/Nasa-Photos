@@ -12,4 +12,9 @@
         android:id="@+id/favorites_graph"
         android:icon="@drawable/icon_heart"
         android:title="@string/menu_favorite" />
+
+    <item
+        android:id="@+id/settings_graph"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/menu_settings" />
 </menu>

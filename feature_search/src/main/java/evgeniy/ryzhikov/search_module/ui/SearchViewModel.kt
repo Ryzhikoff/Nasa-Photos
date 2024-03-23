@@ -6,6 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import evgeniy.ryzhikov.core.domain.SettingProvider
 import evgeniy.ryzhikov.core.models.ImageInfoUi
 import evgeniy.ryzhikov.database_module.domain.AddToFavoriteUseCase
 import evgeniy.ryzhikov.database_module.domain.DeleteFromFavoriteUseCase
@@ -13,6 +14,7 @@ import evgeniy.ryzhikov.database_module.domain.IsFavoritesUseCase
 import evgeniy.ryzhikov.remote.data.images.ImagesPageSource
 import evgeniy.ryzhikov.remote.domain.SearchUseCase
 import evgeniy.ryzhikov.search_module.models.toImageInfoEntity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -29,6 +31,7 @@ class SearchViewModel @Inject constructor(
     private val deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
     private val isFavoritesUseCase: IsFavoritesUseCase,
     private val pagingSourceFactory: ImagesPageSource.Factory,
+    private val settingProvider: SettingProvider,
 ) : ViewModel() {
 
     fun toFavorite(isAdd: Boolean, imageInfoUi: ImageInfoUi) {
@@ -48,10 +51,11 @@ class SearchViewModel @Inject constructor(
         this.query.tryEmit(query)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val searchResult: StateFlow<PagingData<ImageInfoUi>> = query
         .filter { it.isNotEmpty() }
         .map(::newPager)
-        .flatMapLatest { pager -> pager.flow }
+            .flatMapLatest { pager -> pager.flow }
         .cachedIn(viewModelScope)
         .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
@@ -59,9 +63,9 @@ class SearchViewModel @Inject constructor(
     private fun newPager(query: String): Pager<Int, ImageInfoUi> =
         Pager(
             PagingConfig(
-                pageSize = 20,
-                initialLoadSize = 30,
-                maxSize = 100,
+                pageSize = settingProvider.pageSize.toInt(),
+                initialLoadSize = settingProvider.initialLoadSize.toInt(),
+                maxSize = settingProvider.bufferSize.toInt(),
             )
         ) {
             pagingSourceFactory.create(query)
